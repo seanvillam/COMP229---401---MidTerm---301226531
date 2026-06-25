@@ -3,10 +3,19 @@ let CarModel = require('../models/cars');
 module.exports.getCar = async function (req, res, next) {
   try {
     // Find one using the id sent in the parameter of the request
-    let car = await CarModel.findOne({ _id: req.params.id });
+    let car = await CarModel.findOne({ _id: req.params.carId });
 
     // Set the response status
     res.status(200);
+
+    // Send a response
+    res.json(
+      {
+        success: true,
+        message: "Car retrieved successfully.",
+        data: car
+      }
+    );
 
 
   } catch (error) {
